@@ -1,0 +1,45 @@
+#include<stdio.h>
+//no entendi bien el problema y no puedo completar la pregunta 
+// llevo muchas horas intentandolo lo lamento 
+
+#define filas 3   // limite de la matriz com se pide
+#define columnas 3
+
+
+int i,j,k;
+int calculo [filas][columnas];
+int calculo2[filas][columnas];
+int resultado [filas][columnas];
+
+int main (int argc,const char *argv[]){
+	
+	printf ("Introduce la primera matriz :\n ");  // usuario llena matriz a
+	for(i=0;i<filas;i++)
+		for(j=0;j<columnas;j++)
+			scanf ("%d",&calculo[i][j]);
+		
+	printf("\n");
+	printf("Introduce la segunda matriz : \n");  // usuario llena matriz b
+	for(i=0;i<filas;i++)         
+		for(j=0;j<columnas;j++)
+			scanf ("%d",&calculo2[i][j]);
+			
+   for(i=0;i<filas;i++){
+   
+		for(j=0;j<columnas;j++){
+			
+			resultado[i][j]=0;
+			for(k=0;k<columnas;k++)
+			   resultado[i][j]+=calculo[i][j]*calculo2[k][j];
+		}
+}
+
+
+   for(i=0;i<filas;i++){
+        printf("\n");
+		for(j=0;j<columnas;j++)
+			printf("%d",resultado[i][j]);
+			
+}
+return 0;
+}
