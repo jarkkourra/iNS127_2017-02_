@@ -1,0 +1,21 @@
+int main()
+{
+    int cambio, num, num2;
+
+    printf( "\n   Introduzca el primer valor: " );
+    scanf( "%d", &num );
+    printf( "\n   Introduzca el segundo valor " );
+    scanf( "%d", &num2 );
+
+
+    cambio = num;
+    num = num2;
+    num2 = cambio;
+
+    printf( "\n\n   Ahora, el valor del primer numero ahora es: %d",num );
+    printf( "\n\n   Ahora, el valor del segundo numero es:%d", num2 );
+
+
+
+    
+}
