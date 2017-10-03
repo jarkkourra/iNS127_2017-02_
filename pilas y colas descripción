@@ -1,0 +1,67 @@
+#include <stdlib.h>
+ // push agregar elementos, pop eliminar elementos
+
+typedef struct Nodo{   // se crean los nodos con el puntero next que  permitirá el acceso al próximo elemento. 
+    int valor;
+    Nodo* next;
+} Nodo;
+
+
+typedef struct{
+    Nodo* ultimo;  // El puntero ultimoinidicará la dirección del primer elemento de la lista. 
+    int size;   //La variable size contiene el numero de elementos. 
+    char* nombre;
+} Pila;
+
+
+Pila* crearPila(){   // se crea la pila 
+    Pila* pivote;
+    pivote = (Pila*) malloc(sizeof(Pila));   // se defina el tamaño de la pila
+    if(pivote == NULL){    // si excede el limite de memoria arroja un print con el error de no hay memoria
+        printf("No hay memoria suficiente para almacenar la pila");
+        exit(-1);  // señala el tipo de error para ser registrado despues 
+    }
+    pivote->size = 0;       
+    pivote->ultimo = NULL;    / se define el comienzo de la pila 
+    
+    return pivote;
+}
+
+void pushPila(Pila* pila, int valor){        // se insertan elementos en la pila con la declaracion de PUSH
+    Nodo* pivote = (Nodo*) malloc(sizeof(Nodo));
+    pivote->valor = valor;
+    
+    if(pila->size == 0){        //Esta inicializa el puntero next con el puntero NULL y el tamaño con el valor 0.(size) 
+        pivote->next = NULL;
+        pila->ultimo = pivote;
+    }else{
+        pivote->next = pila->ultimo;
+        pila->ultimo = pivote;
+    }
+    
+    pila->size++; // incrementa el tamaño de la pila 
+}
+
+
+int topPila(Pila* pila){      // Ver el tope de la Pila
+    return pila->ultimo->valor;
+}
+
+int popPila(Pila* pila){    // con el POP se entiende que se eliminara elentos de la lista 
+    
+    if(pila->size == 0){   // se verifica si hay elentos agregados a la lista previamente si no lo hay atrroja un print
+        printf("No existe nada en la pila para eliminar");
+        exit(-1);
+    }
+    
+    int pivote = pila->ultimo->valor;          // con la ayuda del puntero busca el elemento 
+    Nodo* ultimo = pila->ultimo;
+    pila->ultimo = pila->ultimo->next;
+    free(ultimo);   // elimina de memoria definitivamente con el comando free el elemento encontrado
+    pila->size--;
+    return pivote;    
+}
+
+int PilaEstaVacia(Pila* pila){
+    return pila->size == 0;  
+}
